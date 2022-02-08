@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+    .bg{
+        background: url('https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80')no-repeat center center/cover;
+        position: absolute;
+        top:0;
+        left: 0;
+        /* width: calc(100vw + 60px);
+        height: calc(100vh + 60px); */
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        filter: blur(0px);
+    }
+    .loading-text{
+        font-size: 50px;
+        color: #fff;
+    }
+</style>
+<body>
+    <section class="bg"></section>
+    <div class="loading-text">0%</div>
+</body>
+<script>
+    const loadText = document.querySelector('.loading-text')
+    const bg = document.querySelector('.bg')
+
+    let load = 0
+
+    let int = setInterval(blurring,30)
+
+    function blurring(){
+        load++
+
+        if(load>99){
+            clearInterval(int)
+        }
+        loadText.innerText = `${load}%`
+        loadText.style.opacity = scale(load, 0, 100, 1, 0)
+        bg.style.filter = `blur(${scale(load, 0, 100, 50, 0)}px)`
+    }
+        const scale = (num, in_min, in_max, out_min, out_max)=>{
+        return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;}
+</script>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 12 | FAQ Collapse | of 50 Day 50 Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+     *{
+        padding: 0;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: #f0f0f0;
+    }
+    h1{
+        margin: 50px 0 30px;
+        text-align: center;
+    }
+    .faq-container{
+        max-width: 600px;
+    }
+    .faq{
+        background-color: transparent;
+        border: 1px solid #9fa4a8;
+        border-radius: 10px;
+        margin: 20px 0;
+        padding: 30px;
+        position: relative;
+        overflow: hidden;
+        transition: 0.3s ease;
+    }
+    .faq .faq-title,.faq .faq-text,.faq button{
+        margin: 15px 0;
+    }
+    .faq.active{
+        background-color: #fff;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1),0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+    .faq.active::before,
+    .faq.active::after{
+        content: '\f075';
+        font-family: 'Font Awesome 5 Free';
+        color: #2ecc71;
+        font-size: 7rem;
+        position: absolute;
+        opacity: 0.2;
+        top: 20px;
+        left: 20px;
+        z-index: 0;
+    }
+    .faq.active::before{
+        color: #3498db;
+        top: -10px;
+        left: -30px;
+        transform: rotateY(180deg);
+    }
+    .faq-title{
+        margin: 0 35px 0 0;
+    }
+    .faq-text{
+        display: none;
+        margin: 30px 0 0;
+    }
+    .faq.active .faq-text{
+        display: block;
+    }
+    .faq-toggle{
+        background-color: transparent;
+        border: 0;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        padding: 0;
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        height: 30px;
+        width: 30px;
+    }
+    .faq-toggle .fa-times{
+        display: none;
+    }
+    .faq.active .faq-toggle .fa-times{
+        color: #fff;
+        display: block;
+    }
+    .faq.active .faq-toggle .fa-chevron-down{
+        display: none;
+    }
+    .faq-toggle:focus{
+        outline: 0;
+    }
+    .faq.active .faq-toggle{
+        background-color: #9fa4a8;
+    }
+</style>
+<body>
+    <h1>Frequently Asked Questions</h1>
+    <div class="faq-container">
+        <div class="faq active">
+            <h3 class="faq-title">
+                Why shouldn't we trust atoms?
+            </h3>
+            <p class="faq-text">
+                They make up everything
+            </p>
+
+            <button class="faq-toggle">
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="faq">
+            <h3 class="faq-title">
+                Why shouldn't we trust atoms?
+            </h3>
+            <p class="faq-text">
+                They make up everything
+            </p>
+
+            <button class="faq-toggle">
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="faq">
+            <h3 class="faq-title">
+                Why shouldn't we trust atoms?
+            </h3>
+            <p class="faq-text">
+                They make up everything
+            </p>
+
+            <button class="faq-toggle">
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="faq">
+            <h3 class="faq-title">
+                Why shouldn't we trust atoms?
+            </h3>
+            <p class="faq-text">
+                They make up everything
+            </p>
+
+            <button class="faq-toggle">
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+</body>
+<script>
+    const toggle = document.querySelectorAll('.faq-toggle')
+    console.log(toggle);
+    toggle.forEach(toggle=>{
+        toggle.addEventListener('click',()=>{
+            toggle.parentNode.classList.toggle('active')
+        })
+    })
+</script>
+</html>

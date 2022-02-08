@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+   *{
+       padding: 0;
+       margin: 0 auto;
+       box-sizing: border-box;
+   } 
+   body{
+       background-color: #333;
+       color: #222;
+       height: 100vh;
+       overflow-x: hidden;
+   }
+   .container{
+       background-color: #fafafa;
+       transform-origin: top left;
+       transition: transform 0.5s linear;
+       width: 100vw;
+       min-height: 100vh;
+       padding: 10px;
+   }
+   .container.show-nav{
+       transform: rotate(-20deg);
+   }
+   .circle-container{
+       position: fixed;
+       top: -100px;
+       left: -100px;
+   }
+   .circle{
+       background-color: #ff7979;
+       height: 200px;
+       width: 200px;
+       border-radius: 50%;
+       position: relative;
+       transition: transform 0.5s linear;
+   }
+   .circle button{
+       cursor: pointer;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       height: 100px;
+       background: transparent;
+       border: none;
+       font-size: 26px;
+       color: #fff;
+   }
+   .circle button:focus{
+       outline: none;
+   }
+   .circle button#open{
+       left: 65%;
+   }
+   .circle button#close{
+       top: 130px;
+       left: 53%;
+       transform: rotate(90deg);
+       transform-origin: top left;
+   }
+   .container.container.show-nav .circle{
+    transform: rotate(-70deg);
+   }
+   .container.show-nav + nav li{
+       transform: translateX(0);
+       transition-delay:0.3s;
+   }
+   nav{
+       position: fixed;
+       bottom: 40px;
+       left: 0;
+       z-index: 100;
+   }
+   nav ul{
+       list-style-type: none;
+       padding-left: 30px;
+   }
+   nav ul li{
+       text-transform: uppercase;
+       color: #fff;
+       margin: 40px 0;
+       transform:translateX(-100%);
+       transition: transform 0.4s ease-in;
+   }
+   nav ul li i{
+       font-size: 20px;
+       margin-right: 10px;
+   }
+   .content img{
+       max-width: 100%;
+   }
+   .content{
+       max-width: 1000px;
+       margin: 50px auto;
+   }
+   nav ul li + li {
+       margin-left: 15px;
+       transform:translateX(-150%);
+   }
+   nav ul li + li + li{
+       margin-left: 30px;
+       transform:translateX(-200%);
+   }
+   .content h1{
+       margin: 0;
+   }
+   .content small{
+       color: #555;
+       font-style: italic;
+   }
+   .content p {
+       color: #333;
+       line-height: 1.5;
+   }
+</style>
+<body>
+    <div class="container">
+        <div class="circle-container">
+            <div class="circle">
+                <button id="close">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button id="open">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Amazing Article</h1>
+            <small>Florin Pop</small>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, exercitationem temporibus! Doloremque animi eveniet quam nobis minus hic dignissimos beatae ipsa nihil deserunt. Earum labore tempora ducimus, accusantium eaque nihil praesentium obcaecati sequi architecto facere officiis perferendis vel sint deserunt ut fugiat eius neque a tempore repudiandae. Impedit reprehenderit mollitia tenetur animi expedita earum aliquid perspiciatis quia! Ab dolor dolorem rem exercitationem. Perferendis nostrum alias, excepturi autem odio odit, natus, quisquam ad distinctio explicabo corporis non consectetur. Veritatis maxime quis perferendis minus impedit voluptatibus officia? Consequatur suscipit aliquam ipsa placeat molestiae libero, deleniti aliquid provident error voluptatum labore nam vitae.</p>
+            <h3>My Car</h3>
+            <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Car">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque consectetur saepe, autem soluta adipisci voluptatum hic nulla dolore animi dolorem officia doloribus enim cum, iure esse, quaerat aliquid. Debitis nemo laboriosam deleniti tempora dolorem doloremque odio! Officiis, a maxime itaque veniam eius tenetur id quam harum! Facere, reprehenderit harum laboriosam asperiores nulla neque cum placeat inventore at ex aperiam saepe nesciunt, amet ratione recusandae et aliquam? Impedit cumque aliquid fugit laudantium sapiente officia. Sunt, rerum?</p>
+        </div>
+    </div>
+    <nav>
+        <ul>
+            <li><i class="fas fa-home"></i>Home</li>
+            <li><i class="fas fa-user-alt"></i>About</li>
+            <li><i class="fas fa-envelope"></i>Contact</li>
+        </ul>
+    </nav>
+</body>
+<script>
+    const Open = document.querySelector('#open')
+    const Close = document.querySelector('#close')
+    const container = document.querySelector('.container')
+    
+    Open.addEventListener('click',()=>container.classList.add('show-nav'))
+    Close.addEventListener('click',()=>container.classList.remove('show-nav'))
+</script>
+</html>

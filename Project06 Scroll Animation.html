@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: #efedd6;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+    h1{
+        margin: 10px;
+    }
+    .box{
+        background-color: steelblue;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        width: 400px;
+        height: 200px;
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 2px 4px 5px rgba(0,0,0,0.3);
+        transform: translateX(400%);
+        transition: transform 0.4s ease;
+    }
+    .box:nth-of-type(even){
+        transform: translateX(-400%);
+    }
+    .box.show{
+        transform: translateX(0);
+    }
+    .box h2{
+        font-size:45px ;
+    }
+</style>
+<body>
+    <h1>Scroll to see the animation</h1>
+    <div class="box"><h2>F</h2></div>
+    <div class="box"><h2>U</h2></div>
+    <div class="box"><h2>C</h2></div>
+    <div class="box"><h2>K</h2></div>
+    <div class="box"><h2></h2></div>
+    <div class="box"><h2>Y</h2></div>
+    <div class="box"><h2>O</h2></div>
+    <div class="box"><h2>U</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+    <div class="box"><h2>Content</h2></div>
+</body>
+    <script>
+        const boxes = document.querySelectorAll('.box')
+
+        window.addEventListener('scroll',checkBoxes)
+
+        checkBoxes()
+
+        function checkBoxes(){
+           const triggerBoottom = window.innerHeight / 5 * 4
+
+           boxes.forEach(box=>{
+               const boxTop = box.getBoundingClientRect().top
+
+               if(boxTop < triggerBoottom){
+                   box.classList.add('show')
+               }else{
+                    box.classList.remove('show')
+               }
+           })
+        }
+    </script>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 13 | Random Choice Picker | of 50 Day 50 Project</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: #2b88f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+    h3{
+        color: #fff;
+        margin: 10px 0 20px;
+    }
+    .container{
+        width: 500px;
+    }
+    .textarea{
+        border: none;
+        display: block;
+        width: 100%;
+        height: 100px;
+        font-family: inherit;
+        padding: 10px;
+        margin: 0 0 20px;
+        font-size: 16px;
+    }
+    .tag{
+        background-color: #f0932b;
+        color: #fff;
+        border-radius: 50px;
+        padding: 10px 20px;
+        margin: 0 5px 10px 0;
+        font-size: 14px;
+        display: inline-block;
+    }
+    .tag.highlight {
+        background-color: #273c75;
+    }
+</style>
+<body>
+    <div class="container">
+        <h3>Enter all of the choices divided by a coma (',').<br>
+        Press enter when you're done</h3>
+        <textarea class="textarea" placeholder="Enter Choices here..." id="textarea"></textarea>
+    
+
+        <div id="tags">
+            <!-- <span class="tag">Choice 1</span>
+            <span class="tag">Choice 2</span>
+            <span class="tag">Choice 3</span> -->
+        </div>
+    </div>
+</body>
+    <script>
+        const tagsEl = document.querySelector('#tags')
+        const textarea = document.querySelector('#textarea')
+
+        textarea.focus()
+
+        textarea.addEventListener('keyup',(event)=>{
+            createTags(event.target.value)
+
+            if(event.key == 'Enter'){
+                setTimeout(()=>{
+                    event.target.value = ''
+                },10)
+                randomSelect()
+            }
+        })
+
+        function createTags(input){
+            const tags = input.split(',').filter(tag => tag.trim()
+            !== '').map(tag => tag.trim())
+            
+            tagsEl.innerHTML = ''
+            
+            tags.forEach(tag => {
+                const tagEl = document.createElement('span')
+                tagEl.classList.add('tag')
+                tagEl.innerText = tag
+                tagsEl.appendChild(tagEl)
+            });
+        }
+
+        function randomSelect() {
+            const times = 30
+
+            const interval = setInterval(()=>{
+                const randomTag = pickRandomTag()
+
+                highlighTag(randomTag)
+
+                setTimeout(()=>{
+                    unhighlighTag(randomTag)
+                },100)
+            },100);
+
+            setTimeout(()=>{
+                clearInterval(interval)
+
+                setTimeout(()=>{
+                    const randomTag = pickRandomTag()
+
+                    highlighTag(randomTag)
+                },100)
+            },times*100)
+        }
+
+        function pickRandomTag(){
+            const tags = document.querySelectorAll('.tag')
+            return tags[Math.floor(Math.random()*tags.length)]
+        }
+
+        function highlighTag(tag){
+            tag.classList.add('highlight')
+        }
+        function unhighlighTag(tag){
+            tag.classList.remove('highlight')
+        }
+    </script>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 16 | Drink Water | of 50 Day 50 Project</title>
+</head>
+<style>
+    :root{
+        --border-color:#144fc6;
+        --fill-color:#6ab3f6;
+    }
+    *{
+        padding: 0;
+        box-sizing: border-box;
+        user-select: none;
+    }
+    body{
+        background-color: #3494e4;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    h1{
+        margin: 10px 0 0;
+    }
+    h3{
+        font-weight: 400;
+        margin: 10px 0;
+    }
+    .cup{
+        background-color: #fff;
+        border: 4px solid var(--border-color);
+        color: var(--border-color);
+        border-radius: 0 0 40px 40px;
+        height: 330px;
+        width: 150px;
+        margin: 30px 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .cup.cup-small{
+        width: 50px;
+        height: 95px;
+        border-radius: 0 0 15px 15px;
+        background-color: rgba(255, 255, 255, 0.9);
+        cursor: pointer;
+        font-size: 16px;
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
+        transition: 0.3s ease;
+    }
+    .cup.cup-small.full{
+        background-color: var(--fill-color);
+        color: #fff;
+    }
+    .cups{
+        display: flex;
+        flex-wrap: wrap;
+        width: 280px;
+        align-items: center;
+        justify-content: center;
+    }
+    .remained{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        flex: 1;
+        transition: 0.3s ease;
+    }
+    .remained span{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .remained small{
+        font-size: 12px;
+    }
+    .percentage{
+        background-color: var(--fill-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        font-weight: bold;
+        height: 0;
+        transition: 0.3s ease;
+    }
+    .text{
+        text-align: center;
+        margin: 0 0 5px;
+    }
+</style>
+<body>
+    <h1>Drink Water</h1>
+    <h3>Goal: 2 Liters</h3>
+
+    <div class="cup">
+        <div class="remained" id="remained">
+            <span id="liters"></span>
+            <small>Remained</small>
+        </div>
+        <div class="percentage" id="percentage"></div>
+    </div>
+    <p class="text">Select how many glasses of water that you have drink</p>
+    <div class="cups">
+        <div class="cup cup-small">250 ml</div>
+        <div class="cup cup-small">250 ml</div>
+        <div class="cup cup-small">250 ml</div>
+        <div class="cup cup-small">250 ml</div>
+        <div class="cup cup-small">250 ml</div>
+        <div class="cup cup-small">250 ml</div>
+        <div class="cup cup-small">250 ml</div>
+        <div class="cup cup-small">250 ml</div>
+    </div>
+</body>
+<script>
+    const smallCups = document.querySelectorAll('.cup-small')
+    const liters = document.querySelector('#liters')
+    const percentage = document.querySelector('#percentage')
+    const remained = document.querySelector('#remained')
+
+    updateBigCup()
+
+    smallCups.forEach((cup,idx)=>{
+        cup.addEventListener('click',() => highlightCups(idx))
+    })
+    function highlightCups(idx){
+        if(smallCups[idx].classList.contains('full')&&!smallCups[idx]
+        .nextElementSibling.classList.contains('full')){
+            idx--
+        }
+
+        smallCups.forEach((cup,idx2)=>{
+            if(idx2 <= idx){
+                cup.classList.add('full')
+            }else{
+                cup.classList.remove('full')
+            }
+        })
+        updateBigCup()
+    }
+    function updateBigCup(){
+        const fullCups = document.querySelectorAll('.cup-small.full').length
+        const totalCups = smallCups.length
+        if(fullCups === 0){
+            percentage.style.visibility='hidden'
+            percentage.style.height = 0
+        }else{
+            percentage.style.visibility = 'visible'
+            percentage.style.height = `${fullCups / totalCups * 330}px`
+        }
+    }
+</script>
+</html>
