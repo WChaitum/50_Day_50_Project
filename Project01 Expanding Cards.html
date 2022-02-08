@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1 of 50 Day 50 Project</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+    .container{
+        display: flex;
+        width: 90vw;
+    }
+    .panel{
+        background-size: auto 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 90vh;
+        border-radius: 2rem;
+        color: #fff;
+        cursor: pointer;
+        flex: 0.5;
+        margin: .5rem;
+        position: relative;
+        transition: flex 0.7s ease-in;
+    }
+    .panel h3{
+        font-size: 1rem;
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translate(-50%,0);
+        text-align: center;
+        padding: .5rem 0;
+        margin: 0;
+        opacity: 0;
+        transition:.7s ease-in;
+        background: -webkit-linear-gradient(left,rgba(255,255,255,0),#000,rgba(255,255,255,0));
+        width: 85%;
+    }
+    .panel.active{
+        flex:4;
+    }
+    .panel.active h3{
+        opacity: 1;
+    }
+    @media(max-width: 480px){
+        .container{
+            width: 100vw;
+        }
+        .panel:nth-of-type(4),.panel:nth-of-type(5){
+            display: none;
+        }
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="panel active" style="background-image:url(https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);" >
+            <h3>Mercedes-Benz</h3>
+        </div>
+        <div class="panel" style="background-image:url(https://images.unsplash.com/photo-1570280406792-bf58b7c59247?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=862&q=80) ;" >
+            <h3>Lamborghini</h3>
+        </div>
+        <div class="panel" style="background-image:url(https://images.unsplash.com/photo-1600138336992-d9fcd4280aa5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80) ;" >
+            <h3>Ford Mustang</h3>
+        </div>
+        <div class="panel" style="background-image:url(https://images.unsplash.com/photo-1559583753-313c77e6ba94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=874&q=80) ;" >
+            <h3>Ford GT</h3>
+        </div>
+        <div class="panel" style="background-image:url(https://images.unsplash.com/photo-1494697536454-6f39e2cc972d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80) ;" >
+            <h3>Nissan GTR</h3>
+        </div>
+    </div>
+</body>
+<script>
+
+    const panels = document.querySelectorAll('.panel')
+    console.log(panels);
+    panels.forEach(panel=>{
+        panel.addEventListener('mouseover',()=>{
+            removeActiveClass()
+            panel.classList.add('active')
+        })
+    })
+    function removeActiveClass(){
+        panels.forEach(panel=>{
+            panel.classList.remove('active')
+        })
+    }
+</script>
+</html>
