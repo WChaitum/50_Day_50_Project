@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+    user-select: none;
+}
+body{
+    background-color: #8e44ad;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    overflow: hidden;
+}
+.counter-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 30px 50px;
+}
+.counter{
+    font-size: 60px;
+    margin-top: 10px;
+}
+@media(max-width:580px){
+    body{
+        flex-direction: column;
+    }
+}
