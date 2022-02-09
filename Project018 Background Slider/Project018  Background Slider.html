@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Slidert</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    *{
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+    user-select: none;
+}
+body{
+    background-color: #3494e4;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+    background-position: center center;
+    background-size: cover;
+    transition: 0.4s ease;
+}
+body::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+.slider-container{
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 16), 0 3px 6px rgba(0, 0, 0, 0.23) ;
+    height: 70vh;
+    width: 70vw;
+    position: relative;
+    overflow: hidden;
+}
+.slide{
+    opacity: 0;
+    height: 100vh;
+    width: 100vw;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: -15vh;
+    left: -15vw;
+    transition: 0.4s ease;
+    z-index: 1;
+}
+.slide.active{
+    opacity: 1;
+}
+.arrow{
+    position: fixed;
+    background-color: transparent;
+    padding: 20px;
+    font-size: 30px;
+    color: #fff;
+    border: 2px solid orange;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    cursor: pointer;
+}
+.arrow:focus{
+    outline: 0;
+}
+.left-arrow{
+    left: calc(15vw - 70px);
+}
+.right-arrow{
+    right: calc(15vw - 70px);
+}
+</style>
+<body>
+    <div class="slider-container">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80');"></div>
+        <div class="slide " style="background-image: url('https://images.unsplash.com/photo-1570280406792-bf58b7c59247?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80');"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1559583753-313c77e6ba94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80');"></div>
+    
+    <button class="arrow left-arrow" id="left">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+    <button class="arrow right-arrow" id="right">
+        <i class="fas fa-arrow-right"></i>
+    </button>
+    </div>
+</body>
+<script>
+    const body = document.body
+    const slides = document.querySelectorAll('.slide')
+    const leftBtn = document.querySelector('#left')
+    const rightBtn = document.querySelector('#right')
+
+    let activeSlide = 0
+
+    rightBtn.addEventListener('click',()=>{
+        activeSlide++
+        
+        if(activeSlide > slides.length -1) {
+            activeSlide=0
+        }
+        setBgToBody()
+        setActiveSlide()
+    })
+
+    leftBtn.addEventListener('click',()=>{
+        activeSlide--
+        
+        if(activeSlide < 0) {
+            activeSlide=slides.length - 1
+        }
+        setBgToBody()
+        setActiveSlide()
+    })
+
+    setBgToBody()
+
+    function setBgToBody(){
+        body.style.backgroundImage = slides[activeSlide].style.backgroundImage
+    }
+
+    function setActiveSlide(){
+        slides.forEach(slide=>slide.classList.remove
+        ('active'))
+
+        slides[activeSlide].classList.add('active')
+    }
+</script>
+</html>
