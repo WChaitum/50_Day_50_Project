@@ -1,6 +1,5 @@
 const API_URL = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?atk=gt&def=gt'
 const IMG_URL = 'https://storage.googleapis.com/ygoprodeck.com/pics/'
-const body = document.querySelector('#body')
 const container = document.querySelector('#container')
 
 // console.log((IMG_URL+'86988864.jpg'));
@@ -13,7 +12,7 @@ async function getMovies(url){
     showCard(data.data);
 }
 function showCard (Cards){
-    console.log(Cards[0].card_images);
+    // console.log(Cards[0].card_images);
     container.innerHTML = ''
 
     Cards.forEach(CardData => {
@@ -24,12 +23,14 @@ function showCard (Cards){
         // console.log(`${IMG_URL}${id}.jpg`);
 
         const ShowImgCard = `${IMG_URL}${id}.jpg`
-        console.log(ShowImgCard);
+        // console.log(ShowImgCard);
 
         const card =  document.createElement('div')
         card.classList.add('card')
         card.innerHTML=`
-            <img src="${ShowImgCard}" alt="">
+            <div class="img-container">
+                <img src="${ShowImgCard}" alt="">
+            </div>
         `
         container.appendChild(card)
 })
