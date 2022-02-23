@@ -4,8 +4,7 @@
     margin: 0;
 }
 body{
-    background: #efefbb;
-    background: linear-gradient(to right ,#d4d3dd,#efefbb);
+
     display: flex;
     flex-direction: column;
     align-items: center;
