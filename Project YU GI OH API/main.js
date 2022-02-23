@@ -15,11 +15,11 @@ function showCard (Cards){
     // console.log(Cards[0].card_images);
     container.innerHTML = ''
 
-    Cards.forEach(CardData => {
+    Cards.forEach((CardData,idx) => {
         const{id,name,level,type,race,atk,def,attribute,desc} = CardData
         // console.log(CardData);
-        // console.log(id);
-
+        console.log(idx);
+        
         // console.log(`${IMG_URL}${id}.jpg`);
 
         const ShowImgCard = `${IMG_URL}${id}.jpg`
@@ -27,11 +27,13 @@ function showCard (Cards){
 
         const card =  document.createElement('div')
         card.classList.add('card')
+        console.log(card,idx);
         card.innerHTML=`
             <div class="img-container">
                 <img src="${ShowImgCard}" alt="">
             </div>
         `
         container.appendChild(card)
+        card.addEventListener('click',()=>console.log(idx))
 })
 }
