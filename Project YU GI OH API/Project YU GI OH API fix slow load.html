@@ -8,20 +8,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <form action="" id="form">
-            <input type="text" id="search" class="search" placeholder="Search">
-        </form>
-    </header>
     <h1>YU GI OH </h1>
     <div class="card-container" id="container">
+        <div class="card">
+            <div class="img-container animated-bg">
+                <img src="${ShowImgCard}" alt="">
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-container animated-bg">
+                <img src="${ShowImgCard}" alt="">
+            </div>
+        </div>
     </div>
 </body>
 <script>
     const API_URL = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?atk=gt&def=gt'
     const IMG_URL = 'https://storage.googleapis.com/ygoprodeck.com/pics/'
     const container = document.querySelector('#container')
-    const AllCards = document.querySelectorAll('body #container .card')
+  
 
 
     
@@ -36,11 +41,12 @@ async function getMovies(url){
 }
 function showCard (Cards){
     // console.log(Cards.length);
-    console.log(AllCards.length);
+    // console.log(AllCards.length);
     container.innerHTML = ''
     for(i = 0;i<10;i++){
       
       const id = Cards[i].id
+      
       // console.log(id,name);
       const ShowImgCard = `${IMG_URL}${id}.jpg`
       const card =  document.createElement('div')
