@@ -19,7 +19,7 @@ function showCard (Cards){
     // console.log(Cards[0].card_images);
     container.innerHTML = ''
 
-    Cards.forEach((CardData) => {
+    Cards.forEach((CardData,idx) => {
         const{id,name,level,type,race,atk,def,attribute,desc} = CardData
 
         // console.log(id);
