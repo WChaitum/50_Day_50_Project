@@ -8,42 +8,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <form action="" id="form">
+            <input type="text" id="search" class="search" placeholder="Search">
+        </form>
+    </header>
     <h1>YU GI OH </h1>
     <div class="card-container" id="container">
-        <div class="card">
-            <div class="img-container animated-bg">
-                <img src="${ShowImgCard}" alt="">
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-container animated-bg">
-                <img src="${ShowImgCard}" alt="">
-            </div>
-        </div>
     </div>
 </body>
 <script>
-    const API_URL = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?atk=gt&def=gt'
+    const API_URL = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=10&offset=0&sort=new'
     const IMG_URL = 'https://storage.googleapis.com/ygoprodeck.com/pics/'
     const container = document.querySelector('#container')
-  
+    const SEARCH_API = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname='
+   
 
-
-    
-// console.log((IMG_URL+'86988864.jpg'));
-getMovies(API_URL)
-async function getMovies(url){
+getCards(API_URL)
+async function getCards(url){
     const res = await fetch(url)
     const data = await res.json()
 
-    // console.log(data.data);
+    console.log(data);
     showCard(data.data);
 }
 function showCard (Cards){
     // console.log(Cards.length);
-    // console.log(AllCards.length);
     container.innerHTML = ''
-    for(i = 0;i<10;i++){
+    for(i = 0;i<100;i++){
       
       const id = Cards[i].id
       
@@ -51,15 +43,28 @@ function showCard (Cards){
       const ShowImgCard = `${IMG_URL}${id}.jpg`
       const card =  document.createElement('div')
         card.classList.add('card')
-        console.log(card);
+        // console.log(id);
         card.innerHTML=`
             <div class="img-container animated-bg">
                 <img src="${ShowImgCard}" alt="">
             </div>
         `
         container.appendChild(card)
+        card.addEventListener('click',()=>console.log(id))
     }
 }
+form.addEventListener('submit',(e)=>{
+    e.preventDefault()
+
+    const searchTerm = search.value
+    if(searchTerm && searchTerm !== ''){
+        getCards(SEARCH_API + searchTerm)
+
+        search.value = ''
+    }else{
+        window.location.reload()
+    }
+})
 
 </script>
 </html>
